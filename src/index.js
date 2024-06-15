@@ -86,26 +86,22 @@ function createCommitDateList({
   endDate
 }) {
   const commitDateList = [];
-  let currentDate = startDate;
+  let currentDate = new Date(startDate);
 
-  while (currentDate <= endDate) {
+  while (currentDate <= new Date(endDate)) {
     if (workdaysOnly && isWeekend(currentDate)) {
       currentDate = addDays(currentDate, 1);
       continue;
     }
 
-    let n = getRandomIntInclusive(...commitsPerDay);
+    const n = getRandomIntInclusive(...commitsPerDay);
 
     for (let i = 0; i < n; i++) {
-      const dateWithHours = setHours(currentDate, getRandomIntInclusive(9, 16));
-      const dateWithHoursAndMinutes = setMinutes(
-        dateWithHours,
-        getRandomIntInclusive(0, 59)
-      );
-      const commitDate = setSeconds(
-        dateWithHoursAndMinutes,
-        getRandomIntInclusive(0, 59)
-      );
+      const hours = getRandomIntInclusive(9, 16);
+      const minutes = getRandomIntInclusive(0, 59);
+      const seconds = getRandomIntInclusive(0, 59);
+      const commitDate = new Date(currentDate);
+      commitDate.setHours(hours, minutes, seconds);
 
       commitDateList.push(commitDate);
     }

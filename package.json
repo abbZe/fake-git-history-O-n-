@@ -12,7 +12,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node src/cli.js",
+    "start": "node src/cli.js --commitsPerDay '0, 10' --startDate '1991/01/01' --endDate '2027/01/01'",
     "lint": "prettier --write 'src/**/*.js'"
   },
   "husky": {
